@@ -5,8 +5,8 @@ var policyText = {
     ]
 };
 
-accessid= 'LTAIp30IrNg9U9MX';
-accesskey= 'c4L39uBdzkDRrFuQ8A2RBcHJ9bpkbB';
+accessid= 'your_id';
+accesskey= 'your_key';
 host = 'http://xd-memory.oss-cn-beijing.aliyuncs.com/';
 
 
