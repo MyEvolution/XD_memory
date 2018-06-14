@@ -37,5 +37,5 @@ def find_oss_file(ossinfo, urlload):
         result['errortext'] = '%s_%s' % (traceback.print_exc(), Exception)
         return result
 if __name__ == "__main__":
-    print(find_oss_file({'ACCESS_KEY_ID':'LTAIp30IrNg9U9MX','ACCESS_KEY_SECRET':'c4L39uBdzkDRrFuQ8A2RBcHJ9bpkbB','ENDPOINT_OUT':'oss-cn-beijing.aliyuncs.com',
-                         'BUCKETNAME_XLS':'evolution-video'},'user1'))
+    print(find_oss_file({'ACCESS_KEY_ID':'your_id','ACCESS_KEY_SECRET':'your_key','ENDPOINT_OUT':'oss-cn-beijing.aliyuncs.com',
+                         'BUCKETNAME_XLS':'your_bucket'},'your_dir_name'))
