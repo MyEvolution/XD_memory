@@ -1,0 +1,90 @@
+$def with(xdfile,isIn,username)
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 500px;
+        width: 100%;
+        border:gray 2px solid;
+        border-radius:2px;
+       }
+           input,button{
+       border-radius:5px;
+       padding:5px;
+       margin:2px;
+       color:black;
+       background:white;
+       border:black 1px solid;
+       }
+    </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=A1Rbu9vKanMUqjWAsdwuOqe6tPoH0bfG"></script>
+  </head>
+  <body>
+  <div style="float:left">
+    <h3>XD parkour memory</h3><a href="./xdmemory"><button>谷歌道路</button></a>
+    <a href="./xdmemory?road=false"><button>谷歌卫星</button></a>
+  </div>
+  $if isIn == 0:
+      <div style="float:right">
+        <form action="xdmemory" method="post">
+        <input type="text" name="username"/>
+        <input type="password" name="password"/>
+        <button onclick="submit()">登录上传视频</button>
+        </form>
+      </div>
+  $if isIn != 0:
+      <div style="float:right">
+            Welcome,$:username!
+      </div>
+  <div id="map"></div>
+    <script>
+    		function xd_init(xd){
+
+        $for ename,lat,lng,detail in xdfile:
+            xd.set('$:ename',{lat:$:lat+0.006300, lng:$:lng+0.006450,detail:'$:detail'});
+}
+      function initMap() {
+          		var map = new BMap.Map("map");
+var point = new BMap.Point(108.833509+0.006490,34.123893+0.006490 );
+map.centerAndZoom(point, 16);
+map.enableScrollWheelZoom(true);
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+		            BMAP_HYBRID_MAP,
+		         BMAP_NORMAL_MAP
+
+        ]}));
+		var xd = new Map();
+
+		xd_init(xd);
+
+
+		xd.forEach(function(value,key,mapoj){
+		var _point = new BMap.Point(value.lng,value.lat);
+		var marker = new BMap.Marker(_point);
+        var contentString = '<h4>'+value['detail']+'</h4><a href=./xdmemory?location='+key+'><img src=../static/images/'+key+'.jpg style="width:300px"/></a>'
+        var opt = {
+        'width':300,
+        'height':300
+        }
+         var inforwindow = new BMap.InfoWindow(contentString,opt);
+		marker.addEventListener("click",function(){
+		map.openInfoWindow(inforwindow,_point);
+		});
+		var label = new BMap.Label(value['detail'],{offset:new BMap.Size(-5,25)});
+	marker.setLabel(label);
+		marker.setAnimation(BMAP_ANIMATION_DROP);
+		map.addOverlay(marker)
+		});
+
+
+      }
+      initMap();
+    </script>
+
+  <!--<script type="text/javascript" src="http://api.map.baidu.com/getscript?type=quick&file=api&ak=A1Rbu9vKanMUqjWAsdwuOqe6tPoH0bfG&t=20140109092002"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/getscript?type=quick&file=feature&ak=A1Rbu9vKanMUqjWAsdwuOqe6tPoH0bfG&t=20140109092002"></script>!-->
+
+  </body>
+</html>
