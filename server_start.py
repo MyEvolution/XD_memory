@@ -44,8 +44,8 @@ class xd_memory:
                 else:
                     return render.index(xdfile,0,road,username)
         else:
-            ossinfo = {'ACCESS_KEY_ID':'LTAIp30IrNg9U9MX','ACCESS_KEY_SECRET':'c4L39uBdzkDRrFuQ8A2RBcHJ9bpkbB','ENDPOINT_OUT':'oss-cn-beijing.aliyuncs.com',
-                         'BUCKETNAME_XLS':'xd-memory'}
+            ossinfo = {'ACCESS_KEY_ID':'your_id','ACCESS_KEY_SECRET':'your_key','ENDPOINT_OUT':'oss-cn-beijing.aliyuncs.com',
+                         'BUCKETNAME_XLS':'your_bucket'}
             files_result = getOssFiles.find_oss_file(ossinfo,location)
             if files_result['errorcode'] == 0:
                 cookie = web.cookies(can_you_upload="no_i_can_not",username="anonymous")
